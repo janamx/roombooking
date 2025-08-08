@@ -1,5 +1,5 @@
 from django.contrib import admin
-from networkx import reverse
+from django.urls import reverse
 from .models import Room, Booking
 
 admin.site.site_url = reverse('spaceboard:dashboard')
