@@ -15,8 +15,9 @@
         <strong>Raum: <span id="room-name"></span></strong><br>
         <span>Start: <span id="start-time"></span></span><br>
         <span>Ende: <span id="end-time"></span></span>
+        <br>
         <div style="display: inline-block; margin-right: 10px;">
-            <a href="{% url 'spaceboard:dashboard' %}" class="outlined close-link">Schließen</a>
+            <a href="#" class="outlined close-link">Schließen</a>
         </div>
         <div style="display: inline-block; margin-right: 10px;">
             <a href="{% url 'spaceboard:dashboard' %}" class="outlined edit-link">Bearbeiten</a>
@@ -56,6 +57,7 @@
                     const end = info.event.end ? info.event.end.toLocaleString() : 'Offen';
 
                     document.querySelector('.close-link').addEventListener('click', function () {
+                        e.preventDefault();
                         document.getElementById('event-info').style.display = 'none';
                     });
 
