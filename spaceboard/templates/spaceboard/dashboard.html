@@ -15,7 +15,7 @@
         <strong>Raum: <span id="room-name"></span></strong><br>
         <span>Start: <span id="start-time"></span></span><br>
         <span>Ende: <span id="end-time"></span></span>
-        <br>
+        <br><br>
         <div style="display: inline-block; margin-right: 10px;">
             <a href="#" class="outlined close-link">Schließen</a>
         </div>
@@ -82,7 +82,7 @@
     </script>
 
     {% if request.user.is_superuser %}
-        <center><a href="http://127.0.0.1:8000/admin/" class="outlined">Zur Admin-Seite</a></center>
+        <center><a href="{% url 'admin:index' %}" class="outlined">Zur Admin-Seite</a></center>
     {% endif %}
     
 {% endblock %}

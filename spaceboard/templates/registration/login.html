@@ -24,7 +24,7 @@
         <button type="submit">Log In</button>
         <a href="{% url 'signup' %}" class="outlined">Registrieren</a>
         <br><br>
-        <a href="http://127.0.0.1:8000/admin/login/" class="outlined">Als Admin anmelden</a>
+        <a href="{% url 'admin:login' %}" class="outlined">Als Admin anmelden</a>
       </form>
       <br><br>
     </div>

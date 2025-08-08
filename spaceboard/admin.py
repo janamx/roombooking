@@ -1,9 +1,7 @@
 from django.contrib import admin
 from .models import Room, Booking
 
-#admin.site.register(Room)
-#admin.site.register(Booking)
-admin.site.site_url = "http://127.0.0.1:8000/spaceboard/dashboard/"
+admin.site.site_url = "{% url 'spaceboard:dashboard' %}"
 
 
 @admin.register(Room)
