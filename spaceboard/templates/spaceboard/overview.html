@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Raumübersicht</h1>
+    <div style="float: left; width: calc(70% - 1rem);">
+        {% if room_overview %}
+            <dl class="room-grid">
+            {% for room in room_overview %}
+                <div class="container">
+                    <dt><a href="{% url 'spaceboard:detail' room.id %}" class="outlined">{{ room.name }}</a></dt>
+                    <br>
+                    <dd>Kapazität: {{ room.capacity }}</dd>
+                </div>
+                <br>
+            {% endfor %}
+            </dl>
+        {% else %}
+            <p>No rooms are available.</p>
+        {% endif %}
+    </div>
+        
+    <div style="float: right; width: calc(30% - 1rem);">
+        <h2>Filter</h2>
+        <br>
+        Kapazität: <input type="number" id="lowestCapacity" style="width: 40px"> - <input type="number" id="highestCapacity" style="width: 40px">
+        <br><br>
+        Datum: <input type="date" id="date">
+        <br><br>
+        Zeitraum: <input type="time" id="startTime"> - <input type="time" id="endTime">
+        <br><br>
+        <button id="filterButton">Suchen</button>
+    </div>
+    
+    <script>
+        document.getElementById("filterButton").addEventListener("click", function () {
+            const minCap = parseInt(document.getElementById("lowestCapacity").value) || 0;
+            const maxCap = parseInt(document.getElementById("highestCapacity").value) || Infinity;
+
+            document.querySelectorAll(".room-grid .container").forEach(function (card) {
+                const capacityText = card.querySelector("dd").innerText;
+                const match = capacityText.match(/\d+/);
+                const capacity = match ? parseInt(match[0]) : 0;
+
+                if (capacity >= minCap && capacity <= maxCap) {
+                    card.style.display = "block"; // anzeigen
+                } else {
+                    card.style.display = "none"; // ausblenden
+                }
+            });    
+        });
+    </script>
+{% endblock %}

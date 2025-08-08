@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: roombooking
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: gunicorn spaceboard/mysite.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: spaceboard/mysite.settings
+      - key: PYTHON_VERSION
+        value: 3.12.9

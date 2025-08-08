@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body style="background-color: #910000;">
+  <center>
+    <div class="registration-container">
+      <h1>Log In</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div>
+          {{ form.username.label_tag }}<br>
+          {{ form.username }}<br><br>
+        </div>
+        <div>
+          {{ form.password.label_tag }}<br>
+          {{ form.password }}<br><br>
+        </div>
+        <br>
+        <button type="submit">Log In</button>
+        <a href="{% url 'signup' %}" class="outlined">Registrieren</a>
+        <br><br>
+        <a href="http://127.0.0.1:8000/admin/login/" class="outlined">Als Admin anmelden</a>
+      </form>
+      <br><br>
+    </div>
+  </center>
+</body>
+

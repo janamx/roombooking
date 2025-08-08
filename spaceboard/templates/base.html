@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="{% url 'spaceboard:overview' %}">Raumübersicht</a></li>
+            <li><a href="{% url 'spaceboard:dashboard' %}">Dashboard</a></li>
+            <li>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+            <p style="float: right; color: white">Eingelogt als: {{ request.user }}</p>
+        </ul>
+        
+        
+    </nav>
+
+    <hr>
+
+    <!-- Inhalt von Unterseiten -->
+    <div class="page-wrapper">
+        <div class="spacer"></div>
+            <div class="content">
+                {% block content %}
+                <!-- Seiteninhalt hier -->
+                {% endblock %}
+            </div>
+        <div class="spacer"></div>
+    </div>
+</body>
+</html>

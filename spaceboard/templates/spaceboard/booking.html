@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Buchung: {{ room.name }}</h1>
+    
+    <form method="post" action="{% url 'spaceboard:book-room' room.id %}" style="float: left">
+        {% csrf_token %}
+        <label for="timeslot">Wählen Sie einen Zeitraum im Kalender: </label>
+        <br><br>
+        <label>Von </label>
+        <input type="datetime-local" name="start" id="start" required readonly>
+        <label>Bis </label> 
+        <input type="datetime-local" name="end" id="end" required readonly> 
+        <br><br>
+        <button type="submit">Buchen</button>
+    </form>
+    <div style="float: right">
+        <p style="color: black">Raum belegt</p>
+        <p style="color: #13711e">Eigene Reservierungen</p>
+    </div>
+    
+    <br><br><br><br><br><br><br>
+
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+
+    <div id='calendar' style="max-width: 900px; margin: 40px auto; height: 600px;"></div>
+
+    <script>
+        let selectedStart = null;
+        let selectedEnd = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'timeGridWeek',
+            eventSources: [
+                {
+                    url: '{% url "spaceboard:bookings-api" %}?room={{ object.pk }}',
+                    color: '#525252',
+                    textColor: 'white',
+                },
+                {
+                    url: '{% url "spaceboard:bookings-api" %}?user={{ request.user.id }}',
+                    color: '#66c7f4',
+                    textColor: 'white',
+                }
+            ],
+            //events: '{% url "spaceboard:bookings-api" %}?room={{ object.pk }}',
+            headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'timeGridWeek,timeGridDay',
+            },
+            height: 569,
+            nowIndicator: true,
+            locale: 'de',
+            businessHours: {
+                daysOfWeek: [ 1, 2, 3, 4, 5 ]
+            },
+            weekends: false,
+            slotMinTime: "08:00",
+            slotMaxTime: "18:00",
+            allDaySlot: false,
+            snapDuration: "00:15:00",
+            selectable: true,
+            selectOverlap: false,
+            selectConstraint: {
+                startTime: "8:00",
+                endTime: "18:00"
+            },
+            select: function(info) {
+                function pad(n) {
+                    return n < 10 ? '0' + n : n;
+                }
+                function toDatetimeLocalString(date) {
+                    return date.getFullYear() + '-' +
+                            pad(date.getMonth() + 1) + '-' +
+                            pad(date.getDate()) + 'T' +
+                            pad(date.getHours()) + ':' +
+                            pad(date.getMinutes());
+                }
+                document.getElementById('start').value = toDatetimeLocalString(info.start);
+                document.getElementById('end').value = toDatetimeLocalString(info.end);
+            }
+        });
+        calendar.render();
+        });
+    </script>
+
+
+{% endblock %}

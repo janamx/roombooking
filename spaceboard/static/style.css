@@ -1,0 +1,183 @@
+/* === Navigation Bar === */
+nav {
+  background-color: #525252;
+  padding: 10px 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav li a,
+nav li button {
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+nav li a:hover,
+nav li button:hover {
+  background-color: #111;
+  border-radius: 4px;
+}
+
+/* Eingeloggt-Text */
+nav p {
+  margin-left: auto;
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* === Seite allgemein === */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0 22px;
+  background-color: #f9f9f9;
+}
+
+/* === Überschrift === */
+h1 {
+  font-size: 36px;
+  color: #333;
+  margin-top: 20px;
+}
+
+/* === Fließtext === */
+p {
+  font-size: 22px;
+  color: #444;
+}
+
+/* === Definition List (Buchungen) === */
+/*dl {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}*/
+
+dt {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #222;
+}
+
+dd {
+  margin-left: 20px;
+  color: #555;
+}
+
+.room-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
+.container {
+  margin-top: 0px;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  width: calc(50% - 1rem);
+  box-sizing: border-box;
+  min-width: 200px;
+}
+
+.page-wrapper {
+      display: flex;
+      min-height: 100vh;
+      background-color: #910000; /* Farbe für linke und rechte Ränder fcd581 */
+    }
+
+.spacer {
+  flex: 1;
+  background-color: #910000; /* gleiche Farbe wie page-wrapper */
+}
+
+.content {
+  flex: 8;
+  max-width: 1200px;
+  background-color: #f1f1f1;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.outlined, button {
+  color: #f1f1f1;
+  text-decoration: none;
+  background: #13711e;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.outlined:hover, button:hover {
+  background-color: #1a9929;
+  color: white;
+  border-radius: 4px;
+}
+
+
+/* Allgemeiner Button-Stil */
+.fc .fc-button, .fc-today-button {
+    background-color: #910000;   /* blaue Hintergrundfarbe */
+    color: white;                /* weiße Schrift */
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Hover-Effekt */
+.fc .fc-button:hover, .fc-today-button:hover {
+    background-color: #c20000;  /* dunkleres Blau beim Hover */
+}
+
+/* Aktiver Button (z. B. ausgewählte Ansicht) */
+.fc .fc-button:active {
+    background-color: #c20000;
+    color: white;
+}
+
+.fc .fc-day-today {
+    background-color: #f1f1f1 !important;
+}
+
+.fc .fc-timegrid-now-indicator-line {
+    background-color: #111111 !important; /* z. B. grün statt rot */
+    color: #123456 !important;
+}
+
+.registration-container {
+    background: var(--body-bg);
+    border: 1px solid #525252;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 22em;
+    min-width: 200px;
+    margin: 100px auto;
+    height: auto;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+{% block content %}
+<body style="background-color: #910000;">
+  <div class="registration-container">
+    <h1>Sign up</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <br>
+      <button type="submit">Sign Up</button>
+      <a href="accounts/login/" class="outlined">Login</a>
+    </form>
+    <br>
+  </div>
+</body>
+
+
+{% endblock %}

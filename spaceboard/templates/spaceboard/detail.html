@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ room.name }}</h1>
+    <ul>
+        <li>Kapazität: {{ room.capacity }}</li>
+    </ul>
+    <center><a href="{% url 'spaceboard:booking' room.id %}" class="outlined">Buchen</a></center></h1>
+    
+
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+
+    <div id='calendar' style="max-width: 900px; margin: 40px auto; height: 600px;"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'timeGridWeek',
+            events: '{% url "spaceboard:bookings-api" %}?room={{ room.id }}',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'timeGridWeek,timeGridDay',
+            },
+            height: 569,
+            nowIndicator: true,
+            locale: 'de',
+            businessHours: {
+                daysOfWeek: [ 1, 2, 3, 4, 5 ]
+            },
+            weekends: false,
+            slotMinTime: "08:00",
+            slotMaxTime: "18:00",
+            allDaySlot: false
+        });
+        calendar.render();
+        });
+    </script>
+
+{% endblock %}

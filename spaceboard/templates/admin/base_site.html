@@ -1,0 +1,29 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% block extrastyle %}
+    {{ block.super }}
+    <style>
+        /* Erzwinge Light Mode */
+        :root {
+            color-scheme: light;
+        }
+
+        /* Für neuere Django-Versionen: überschreibe dark-mode Regeln */
+        @media (prefers-color-scheme: dark) {
+            html {
+                filter: none !important;
+                background-color: white !important;
+                color: black !important;
+            }
+
+            body {
+                background-color: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+{% endblock %}
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style_admin.css' %}">
+{% endblock %}
