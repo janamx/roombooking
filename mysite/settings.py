@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,9 +119,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-import os
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'spaceboard', 'static')]
 
 # Default primary key field type
@@ -134,4 +135,3 @@ LOGIN_REDIRECT_URL = "../../spaceboard/dashboard"
 
 LOGOUT_REDIRECT_URL = "/accounts/login/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
