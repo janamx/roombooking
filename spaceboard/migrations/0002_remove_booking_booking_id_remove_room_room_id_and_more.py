@@ -14,11 +14,11 @@ class Migration(migrations.Migration):
             model_name='room',
             name='room_id',
         ),
-        migrations.AddField(
-            model_name='booking',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
-        ),
+        #migrations.AddField(
+         #   model_name='booking',
+          #  name='id',
+           # field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+        #),
         migrations.AddField(
             model_name='room',
             name='id',
